@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Promise.all([p1,p2,p3])将多个promise实例包装成一个新的promise。
+        // 场景：请求多张图片信息，希望等所有图片加载完毕之后，再一起显示到页面中。
+        let p1 = new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                resolve ("rp1"); 
+            }, 3000);
+        })
+        let p2 = new Promise((resolve,reject)=>{
+           setTimeout(() => {
+            resolve ("rp2");
+           }, 2000);
+        })
+        let p3 = new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                resolve ("rp3");
+            }, 1000);
+        })
+        // p1,p2,p3都是异步的 同时开始的
+        // 即使p3先响应结果。结果顺序依然是p1,p2,p3.
+        Promise.all([p1,p2,p3]).then(res=>{
+            console.log(res);
+        })
+    </script>
+</body>
+</html>
